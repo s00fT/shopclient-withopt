@@ -70,9 +70,6 @@ const DashboardPage = () => {
     }
   }
 
-  const preloadImage =
-    bestsellers?.rows?.[0]?.images && JSON.parse(bestsellers.rows[0].images)[0]
-
   const closeAlert = () => setShowAlert(false)
 
   return (

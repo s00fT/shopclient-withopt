@@ -62,7 +62,10 @@ const CatalogFilters = ({
         priceToQueryValue,
       } = checkQueryParams(router)
 
-      const boilerQuery = `&boiler=${getQueryParamOnFirstRender('boiler', router)}`
+      const boilerQuery = `&boiler=${getQueryParamOnFirstRender(
+        'boiler',
+        router
+      )}`
       const partsQuery = `&parts=${getQueryParamOnFirstRender('parts', router)}`
       const priceQuery = `&priceFrom=${priceFromQueryValue}&priceTo=${priceToQueryValue}`
 

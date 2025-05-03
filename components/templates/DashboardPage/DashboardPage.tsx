@@ -14,17 +14,25 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 // 🔽 dynamic imports
-const DashboardSlider = dynamic<IDashboardSlider>(() => import('@/components/modules/DashboardPage/DashboardSlider'), {
-  ssr: false,
-  loading: () => <div>Загрузка слайдера...</div>
-})
-const MotionWrapper = dynamic(() => import('@/components/elements/MotionWrapper'), {
-  ssr: false
-})
+const DashboardSlider = dynamic<IDashboardSlider>(
+  () => import('@/components/modules/DashboardPage/DashboardSlider'),
+  {
+    ssr: false,
+    loading: () => <div>Загрузка слайдера...</div>,
+  }
+)
+const MotionWrapper = dynamic(
+  () => import('@/components/elements/MotionWrapper'),
+  {
+    ssr: false,
+  }
+)
 
 const DashboardPage = () => {
   const [newParts, setNewParts] = useState<IBoilerParts>({} as IBoilerParts)
-  const [bestsellers, setBestsellers] = useState<IBoilerParts>({} as IBoilerParts)
+  const [bestsellers, setBestsellers] = useState<IBoilerParts>(
+    {} as IBoilerParts
+  )
   const [spinner, setSpinner] = useState(false)
   const shoppingCart = useStore($shoppingCart)
   const [showAlert, setShowAlert] = useState(!!shoppingCart.length)
@@ -32,7 +40,9 @@ const DashboardPage = () => {
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
   const connectionType = useConnectionType()
   const isSlowConnection =
-    connectionType === '3g' || connectionType === '2g' || connectionType === 'slow-2g'
+    connectionType === '3g' ||
+    connectionType === '2g' ||
+    connectionType === 'slow-2g'
 
   useEffect(() => {
     loadBoilerParts()
@@ -45,7 +55,9 @@ const DashboardPage = () => {
   const loadBoilerParts = async () => {
     try {
       setSpinner(true)
-      const bestsellers = await getBestsellersOrNewPartsFx('/boiler-parts/bestsellers')
+      const bestsellers = await getBestsellersOrNewPartsFx(
+        '/boiler-parts/bestsellers'
+      )
       const newParts = await getBestsellersOrNewPartsFx('/boiler-parts/new')
 
       setBestsellers(bestsellers)
@@ -60,17 +72,14 @@ const DashboardPage = () => {
   }
 
   const preloadImage =
-    bestsellers?.rows?.[0]?.images &&
-    JSON.parse(bestsellers.rows[0].images)[0]
+    bestsellers?.rows?.[0]?.images && JSON.parse(bestsellers.rows[0].images)[0]
 
   const closeAlert = () => setShowAlert(false)
 
   return (
     <>
       <Head>
-        {preloadImage && (
-          <link rel="preload" as="image" href={preloadImage} />
-        )}
+        {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
       </Head>
 
       <section className={styles.dashboard}>
@@ -115,11 +124,16 @@ const DashboardPage = () => {
           </h2>
 
           <div className={styles.dashboard__parts}>
-            <h3 className={`${styles.dashboard__parts__title} ${darkModeClass}`}>
+            <h3
+              className={`${styles.dashboard__parts__title} ${darkModeClass}`}
+            >
               Хиты продаж
             </h3>
             {!isSlowConnection ? (
-              <DashboardSlider items={bestsellers.rows || []} spinner={spinner} />
+              <DashboardSlider
+                items={bestsellers.rows || []}
+                spinner={spinner}
+              />
             ) : (
               <div
                 style={{
@@ -139,7 +153,9 @@ const DashboardPage = () => {
           </div>
 
           <div className={styles.dashboard__parts}>
-            <h3 className={`${styles.dashboard__parts__title} ${darkModeClass}`}>
+            <h3
+              className={`${styles.dashboard__parts__title} ${darkModeClass}`}
+            >
               Новинки
             </h3>
             {!isSlowConnection ? (
@@ -171,10 +187,10 @@ const DashboardPage = () => {
             <p className={`${styles.dashboard__about__text} ${darkModeClass}`}>
               Инструкции и схемы помогут разобраться в эксплуатации, определить
               неисправность и правильно выбрать запчасть для ремонта Вашего
-              газового оборудования. Купить запчасть, деталь для ремонта газового
-              котла возможно в любом населенном пункте Российской Федерации:
-              Осуществляем доставку запчасти к газовым котлам в следующие города:
-              Москва, Сан
+              газового оборудования. Купить запчасть, деталь для ремонта
+              газового котла возможно в любом населенном пункте Российской
+              Федерации: Осуществляем доставку запчасти к газовым котлам в
+              следующие города: Москва, Сан
             </p>
           </div>
         </div>
@@ -184,4 +200,3 @@ const DashboardPage = () => {
 }
 
 export default DashboardPage
-

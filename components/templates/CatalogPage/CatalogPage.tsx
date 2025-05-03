@@ -29,20 +29,29 @@ import ReactPaginate from 'react-paginate'
 import { toast } from 'react-toastify'
 
 // 🔽 Динамические импорты
-const CatalogItem = dynamic(() => import('@/components/modules/CatalogPage/CatalogItem'), {
-  ssr: false,
-  loading: () => <li>Загрузка товара...</li>,
-})
+const CatalogItem = dynamic(
+  () => import('@/components/modules/CatalogPage/CatalogItem'),
+  {
+    ssr: false,
+    loading: () => <li>Загрузка товара...</li>,
+  }
+)
 
-const FilterSelect = dynamic(() => import('@/components/modules/CatalogPage/FilterSelect'), {
-  ssr: false,
-  loading: () => <div>Загрузка сортировки...</div>,
-})
+const FilterSelect = dynamic(
+  () => import('@/components/modules/CatalogPage/FilterSelect'),
+  {
+    ssr: false,
+    loading: () => <div>Загрузка сортировки...</div>,
+  }
+)
 
-const ManufacturersBlock = dynamic(() => import('@/components/modules/CatalogPage/ManufacturersBlock'), {
-  ssr: false,
-  loading: () => <div>Загрузка производителей...</div>,
-})
+const ManufacturersBlock = dynamic(
+  () => import('@/components/modules/CatalogPage/ManufacturersBlock'),
+  {
+    ssr: false,
+    loading: () => <div>Загрузка производителей...</div>,
+  }
+)
 
 const CatalogPage = ({ query }: { query: IQueryParams }) => {
   const mode = useStore($mode)

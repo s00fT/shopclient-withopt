@@ -8,7 +8,11 @@ interface Props {
 
 const MotionWrapper = ({ children }: Props) => (
   <AnimatePresence>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {children}
     </motion.div>
   </AnimatePresence>

@@ -138,7 +138,7 @@ export const inputStyles: StylesConfig<IOption, boolean, GroupBase<IOption>> = {
     },
     '&::-webkit-scrollbar-thumb:hover': {
       background: 'grey',
-    }
+    },
   }),
   placeholder: (defaultStyles) => ({
     ...defaultStyles,

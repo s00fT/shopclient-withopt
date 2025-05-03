@@ -11,7 +11,6 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-
 const BrandsSlider = () => {
   const isMedia768 = useMediaQuery(768)
   const mode = useStore($mode)
@@ -61,14 +60,20 @@ const BrandsSlider = () => {
           key={item.id}
           style={{ width: isMedia768 ? 124 : 180 }}
         >
-          <div style={{ position: 'relative', width: '100%', height:    isMedia768 ? 60 : 80 }}>
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: isMedia768 ? 60 : 80,
+            }}
+          >
             <Image
               src={item.img}
               alt={item.alt}
               fill
               style={{ objectFit: 'contain' }}
               loading="lazy"
-            />  
+            />
           </div>
         </div>
       ))}

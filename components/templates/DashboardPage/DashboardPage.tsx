@@ -23,11 +23,11 @@ const DashboardPage = () => {
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
-  const connectionType = useConnectionType();
+  const connectionType = useConnectionType()
   const isSlowConnection =
     connectionType === '3g' ||
     connectionType === '2g' ||
-    connectionType === 'slow-2g';
+    connectionType === 'slow-2g'
 
   useEffect(() => {
     loadBoilerParts()
@@ -154,7 +154,7 @@ const DashboardPage = () => {
             </div>
           )}
         </div>
-        
+
         <div className={styles.dashboard__about}>
           <h3
             className={`${styles.dashboard__parts__title} ${styles.dashboard__about__title} ${darkModeClass}`}

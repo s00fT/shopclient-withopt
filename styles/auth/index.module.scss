@@ -1,10 +1,10 @@
-$bg: #EDF2F0;
+$bg: #edf2f0;
 $neu-1: #ecf0f3;
 $neu-2: #d1d9e6;
 $white: #f9f9f9;
 $gray: #a0a5a8;
 $black: #181818;
-$purple: #4B70E2;
+$purple: #4b70e2;
 $transition: 1.25s;
 
 /**/
@@ -14,17 +14,13 @@ $transition: 1.25s;
   height: 100vh;
   padding: 25px;
   background-color: $neu-1;
-  box-shadow:
-    10px 10px 10px $neu-2,
-    -10px -10px 10px $white;
+  box-shadow: 10px 10px 10px $neu-2, -10px -10px 10px $white;
   border-radius: 12px;
   overflow: hidden;
 
   &.dark_mode {
     background-color: #2d2d2d;
-    box-shadow:
-      10px 10px 10px #2d2d2d,
-      -10px -10px 10px $black;
+    box-shadow: 10px 10px 10px #2d2d2d, -10px -10px 10px $black;
   }
 }
 
@@ -69,14 +65,13 @@ $transition: 1.25s;
     object-fit: contain;
     width: 30px;
     margin: 0 5px;
-    opacity: .5;
-    transition: .15s;
+    opacity: 0.5;
+    transition: 0.15s;
 
     &:hover {
       opacity: 1;
-      transition: .15s;
+      transition: 0.15s;
       cursor: pointer;
-
     }
   }
 
@@ -94,20 +89,16 @@ $transition: 1.25s;
     margin: 4px 0;
     padding-left: 25px;
     font-size: 13px;
-    letter-spacing: .15px;
+    letter-spacing: 0.15px;
     border: none;
     outline: none;
     background-color: $neu-1;
-    transition: .25s ease;
+    transition: 0.25s ease;
     border-radius: 8px;
-    box-shadow:
-      inset 2px 2px 4px $neu-2,
-      inset -2px -2px 4px $white;
+    box-shadow: inset 2px 2px 4px $neu-2, inset -2px -2px 4px $white;
 
     &:focus {
-      box-shadow:
-        inset 4px 4px 4px $neu-2,
-        inset -4px -4px 4px $white;
+      box-shadow: inset 4px 4px 4px $neu-2, inset -4px -4px 4px $white;
     }
 
     @media (max-width: 530px) {
@@ -122,9 +113,7 @@ $transition: 1.25s;
   &.dark_mode &__input {
     background-color: #2d2d2d;
     color: #f2f2f2;
-    box-shadow:
-    inset 2px 2px 4px $black,
-    inset -2px -2px 4px $black;
+    box-shadow: inset 2px 2px 4px $black, inset -2px -2px 4px $black;
   }
 
   &__span {
@@ -159,7 +148,7 @@ $transition: 1.25s;
 
 .description {
   font-size: 14px;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   text-align: center;
   line-height: 1.6;
 
@@ -181,17 +170,13 @@ $transition: 1.25s;
 
   background-color: $purple;
   color: $white;
-  box-shadow:
-    8px 8px 16px $neu-2,
-    -8px -8px 16px $white;
+  box-shadow: 8px 8px 16px $neu-2, -8px -8px 16px $white;
 
   border: none;
   outline: none;
 
   &.dark_mode {
-    box-shadow:
-    8px 8px 16px #2d2d2d,
-    -8px -8px 16px $black;
+    box-shadow: 8px 8px 16px #2d2d2d, -8px -8px 16px $black;
   }
 
   @media (max-width: 530px) {
@@ -254,15 +239,11 @@ $transition: 1.25s;
   transition: $transition, background-color 0s, box-shadow 0s;
   background-color: $neu-1;
   overflow: hidden;
-  box-shadow:
-    4px 4px 10px $neu-2,
-    -4px -4px 10px $white;
+  box-shadow: 4px 4px 10px $neu-2, -4px -4px 10px $white;
 
   &.dark_mode {
     background-color: #2d2d2d;
-    box-shadow:
-    8px 8px 16px $black,
-    -8px -8px 16px $black;
+    box-shadow: 8px 8px 16px $black, -8px -8px 16px $black;
   }
 
   @media (max-width: 800px) {
@@ -280,9 +261,7 @@ $transition: 1.25s;
     height: 500px;
     border-radius: 50%;
     background-color: $neu-1;
-    box-shadow:
-      inset 8px 8px 12px $neu-2,
-      inset -8px -8px 12px $white;
+    box-shadow: inset 8px 8px 12px $neu-2, inset -8px -8px 12px $white;
 
     bottom: -60%;
     left: -60%;
@@ -290,9 +269,7 @@ $transition: 1.25s;
 
     &.dark_mode {
       background-color: #2d2d2d;
-      box-shadow:
-      8px 8px 16px #2d2d2d,
-      -8px -8px 16px $black;
+      box-shadow: 8px 8px 16px #2d2d2d, -8px -8px 16px $black;
     }
 
     &__t {
@@ -395,7 +372,6 @@ $transition: 1.25s;
 }
 
 @keyframes is-gx {
-
   0%,
   10%,
   100% {
@@ -461,4 +437,3 @@ $transition: 1.25s;
     right: 5px;
   }
 }
-

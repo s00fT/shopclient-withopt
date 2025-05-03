@@ -1,9 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
-  StylesConfig,
-  GroupBase,
-  CSSObjectWithLabel,
-} from 'react-select'
+import { StylesConfig, GroupBase, CSSObjectWithLabel } from 'react-select'
 import { IOption } from '../../types/common'
 
 export const controlStyles = (
@@ -44,7 +40,11 @@ export const menuStyles = (
   backgroundColor: theme === 'dark' ? '#2d2d2d' : '#f2f2f2f2',
 })
 
-export const selectStyles: StylesConfig<IOption, boolean, GroupBase<IOption>> = {
+export const selectStyles: StylesConfig<
+  IOption,
+  boolean,
+  GroupBase<IOption>
+> = {
   indicatorSeparator: () => ({
     border: 'none',
   }),

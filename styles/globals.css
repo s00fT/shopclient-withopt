@@ -5,7 +5,6 @@
 }
 
 html,
-
 body {
   font-family: Roboto, sans-serif;
 }
@@ -51,7 +50,7 @@ a {
   font-family: Raleway;
   font-style: normal;
   font-weight: 700;
-  src: url(/fonts/Raleway-Bold.woff) format("woff");
+  src: url(/fonts/Raleway-Bold.woff) format('woff');
 }
 
 @font-face {
@@ -59,7 +58,7 @@ a {
   font-family: Raleway;
   font-style: normal;
   font-weight: 500;
-  src: url(/fonts/Raleway-Medium.woff) format("woff");
+  src: url(/fonts/Raleway-Medium.woff) format('woff');
 }
 
 @font-face {
@@ -67,7 +66,7 @@ a {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: url(/fonts/Roboto-Medium.woff) format("woff");
+  src: url(/fonts/Roboto-Medium.woff) format('woff');
 }
 
 @font-face {
@@ -75,7 +74,7 @@ a {
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/Roboto-Regular.woff) format("woff");
+  src: url(/fonts/Roboto-Regular.woff) format('woff');
 }
 
 .overlay {
@@ -117,7 +116,7 @@ a {
 }
 
 .selected a {
-  background-color: #1C629E;
+  background-color: #1c629e;
   color: #f2f2f2;
 }
 

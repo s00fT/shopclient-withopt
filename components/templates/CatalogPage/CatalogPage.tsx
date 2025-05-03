@@ -61,11 +61,11 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
   )
   const { toggleOpen, open, closePopup } = usePopup()
 
-  const connectionType = useConnectionType();
+  const connectionType = useConnectionType()
   const isSlowConnection =
     connectionType === '3g' ||
     connectionType === '2g' ||
-    connectionType === 'slow-2g'; 
+    connectionType === 'slow-2g'
 
   useEffect(() => {
     loadBoilerParts()
@@ -292,10 +292,14 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
               <ul className={styles.catalog__list}>
                 {boilerParts.rows?.length ? (
                   (isSlowConnection
-                    ? boilerParts.rows.slice(0,6) 
+                    ? boilerParts.rows.slice(0, 6)
                     : boilerParts.rows
-                  ).map((item, index) =>( 
-                    <CatalogItem key={item.id} item={item} isFirst={index === 0} />
+                  ).map((item, index) => (
+                    <CatalogItem
+                      key={item.id}
+                      item={item}
+                      isFirst={index === 0}
+                    />
                   ))
                 ) : (
                   <span>Список товаров пуст...</span>

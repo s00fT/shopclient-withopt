@@ -1,9 +1,6 @@
 import { getBoilerPartsFx } from '@/app/api/boilerParts'
 import FilterSvg from '@/components/elements/FilterSvg/FilterSvg'
 import CatalogFilters from '@/components/modules/CatalogPage/CatalogFilters'
-import CatalogItem from '@/components/modules/CatalogPage/CatalogItem'
-import FilterSelect from '@/components/modules/CatalogPage/FilterSelect'
-import ManufacturersBlock from '@/components/modules/CatalogPage/ManufacturersBlock'
 import {
   $boilerManufacturers,
   $boilerParts,
@@ -25,10 +22,27 @@ import { IQueryParams } from '@/types/catalog'
 import { checkQueryParams } from '@/utils/catalog'
 import { useStore } from 'effector-react'
 import { AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { toast } from 'react-toastify'
+
+// 🔽 Динамические импорты
+const CatalogItem = dynamic(() => import('@/components/modules/CatalogPage/CatalogItem'), {
+  ssr: false,
+  loading: () => <li>Загрузка товара...</li>,
+})
+
+const FilterSelect = dynamic(() => import('@/components/modules/CatalogPage/FilterSelect'), {
+  ssr: false,
+  loading: () => <div>Загрузка сортировки...</div>,
+})
+
+const ManufacturersBlock = dynamic(() => import('@/components/modules/CatalogPage/ManufacturersBlock'), {
+  ssr: false,
+  loading: () => <div>Загрузка производителей...</div>,
+})
 
 const CatalogPage = ({ query }: { query: IQueryParams }) => {
   const mode = useStore($mode)

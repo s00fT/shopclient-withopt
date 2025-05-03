@@ -1,23 +1,32 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import CatalogFiltersDesktop from './CatalogFiltersDesktop'
-import { ICatalogFiltersProps } from '@/types/catalog'
-import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import {
   $boilerManufacturers,
   $partsManufacturers,
   setBoilerManufacturersFromQuery,
   setPartsManufacturersFromQuery,
 } from '@/context/boilerParts'
-import { useStore } from 'effector-react'
-import { useRouter } from 'next/router'
-import { getQueryParamOnFirstRender } from '@/utils/common'
-import CatalogFiltersMobile from './CatalogFiltersMobile'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ICatalogFiltersProps } from '@/types/catalog'
 import {
   checkQueryParams,
   updateParamsAndFilters,
   updateParamsAndFiltersFromQuery,
 } from '@/utils/catalog'
+import { getQueryParamOnFirstRender } from '@/utils/common'
+import { useStore } from 'effector-react'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+
+// 🔽 динамические импорты
+const CatalogFiltersDesktop = dynamic(() => import('./CatalogFiltersDesktop'), {
+  ssr: false,
+  loading: () => <div>Загрузка фильтров...</div>,
+})
+const CatalogFiltersMobile = dynamic(() => import('./CatalogFiltersMobile'), {
+  ssr: false,
+  loading: () => <div>Загрузка фильтров...</div>,
+})
 
 const CatalogFilters = ({
   priceRange,
@@ -53,10 +62,7 @@ const CatalogFilters = ({
         priceToQueryValue,
       } = checkQueryParams(router)
 
-      const boilerQuery = `&boiler=${getQueryParamOnFirstRender(
-        'boiler',
-        router
-      )}`
+      const boilerQuery = `&boiler=${getQueryParamOnFirstRender('boiler', router)}`
       const partsQuery = `&parts=${getQueryParamOnFirstRender('parts', router)}`
       const priceQuery = `&priceFrom=${priceFromQueryValue}&priceTo=${priceToQueryValue}`
 

@@ -56,32 +56,32 @@ export const optionStyles = (
       ? '#9e9e9e'
       : '#f2f2f2'
     : state.isSelected
-      ? '#f2f2f2'
-      : '#9e9e9e'
+    ? '#f2f2f2'
+    : '#9e9e9e'
 
   const backgroundHoverForDarkMode = state.isSelected
     ? state.isSelected
       ? '#f2f2f2'
       : '#9e9e9e'
     : state.isSelected
-      ? '#9e9e9e'
-      : '#f2f2f2'
+    ? '#9e9e9e'
+    : '#f2f2f2'
 
   const colorHoverForLightMode = state.isSelected
     ? state.isSelected
       ? '#f2f2f2'
       : '#9e9e9e'
     : state.isSelected
-      ? '#9e9e9e'
-      : '#f2f2f2'
+    ? '#9e9e9e'
+    : '#f2f2f2'
 
   const colorHoverForDarkMode = state.isSelected
     ? state.isSelected
       ? '#9e9e9e'
       : '#f2f2f2'
     : state.isSelected
-      ? '#f2f2f2'
-      : '#9e9e9e'
+    ? '#f2f2f2'
+    : '#9e9e9e'
 
   return {
     ...defaultStyles,
@@ -101,16 +101,16 @@ export const optionStyles = (
           ? '#ffffff'
           : '#2d2d2d'
         : state.isSelected
-          ? '#2d2d2d'
-          : '#ffffff',
+        ? '#2d2d2d'
+        : '#ffffff',
     color:
       theme === 'dark'
         ? state.isSelected
           ? '#222222'
           : '#f2f2f2'
         : state.isSelected
-          ? '#f2f2f2'
-          : '#222222',
+        ? '#f2f2f2'
+        : '#222222',
   }
 }
 

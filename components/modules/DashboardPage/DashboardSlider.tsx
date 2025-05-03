@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { $mode } from '@/context/mode'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/dashboard/index.module.scss'
@@ -6,6 +5,7 @@ import skeletonStyles from '@/styles/skeleton/index.module.scss'
 import { IDashboardSlider } from '@/types/dashboard'
 import { formatPrice } from '@/utils/common'
 import { useStore } from 'effector-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import Slider from 'react-slick'
@@ -26,10 +26,8 @@ const DashboardSlider = ({
 
   useEffect(() => {
     const slider = document.querySelectorAll(`.${styles.dashboard__slider}`)
-
     slider.forEach((item) => {
       const list = item.querySelector('.slick-list') as HTMLElement
-
       list.style.height = isMedia560 ? '276px' : '390px'
       list.style.padding = '0 5px'
       list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
@@ -65,13 +63,21 @@ const DashboardSlider = ({
           </div>
         ))
       ) : items.length ? (
-        items.map((item) => (
+        items.map((item, index) => (
           <div
             className={`${styles.dashboard__slide} ${darkModeClass}`}
             key={item.id}
             style={width}
           >
-            <img src={JSON.parse(item.images)[0]} alt={item.name} />
+            <Image
+              src={JSON.parse(item.images)[0]}
+              alt={item.name}
+              width={640}
+              height={480}
+              priority={index === 0}
+              placeholder="blur"
+              blurDataURL="/images/boiler-parts/placeholder.jpg"
+            />
             <div className={styles.dashboard__slide__inner}>
               <Link
                 href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
@@ -94,7 +100,7 @@ const DashboardSlider = ({
           </div>
         ))
       ) : (
-        <span>Список товаров пуст....</span>
+        <span>Список товаров пуст...</span>
       )}
     </Slider>
   )

@@ -71,7 +71,7 @@ const BrandsSlider = () => {
               src={item.img}
               alt={item.alt}
               fill
-              sizes="(max-width: 768px) 124px, 180px" 
+              sizes="(max-width: 768px) 124px, 180px"
               style={{ objectFit: 'contain' }}
               loading="lazy"
             />

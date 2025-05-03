@@ -111,16 +111,40 @@ const Footer = () => {
               </h3>
               <ul className={styles.footer__bottom__block__pay}>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <Image src="/img/pay.png" alt="apple-pay" width={70} height={48} style={{ height: 'auto' }} />
+                  <Image
+                    src="/img/pay.png"
+                    alt="apple-pay"
+                    width={70}
+                    height={48}
+                    style={{ height: 'auto' }}
+                  />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <Image src="/img/gpay.png" alt="google-pay" width={70} height={48} style={{ height: 'auto' }} />
+                  <Image
+                    src="/img/gpay.png"
+                    alt="google-pay"
+                    width={70}
+                    height={48}
+                    style={{ height: 'auto' }}
+                  />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <Image src="/img/master-card.png" alt="master-card" width={70} height={48} style={{ height: 'auto' }} />
+                  <Image
+                    src="/img/master-card.png"
+                    alt="master-card"
+                    width={70}
+                    height={48}
+                    style={{ height: 'auto' }}
+                  />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <Image src="/img/visa.png" alt="visa" width={70} height={48} style={{ height: 'auto' }} />
+                  <Image
+                    src="/img/visa.png"
+                    alt="visa"
+                    width={70}
+                    height={48}
+                    style={{ height: 'auto' }}
+                  />
                 </li>
               </ul>
             </div>

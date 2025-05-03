@@ -77,8 +77,6 @@ const DashboardPage = () => {
 
   return (
     <>
-    
-
       <section className={styles.dashboard}>
         <div className={`container ${styles.dashboard__container}`}>
           {showAlert && (

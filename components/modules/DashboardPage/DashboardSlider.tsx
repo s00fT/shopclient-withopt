@@ -62,45 +62,60 @@ const DashboardSlider = ({
             <div className={skeletonStyles.skeleton__item__light} />
           </div>
         ))
-      ) : items.length ? (
-        items.map((item, index) => (
-          <div
-            className={`${styles.dashboard__slide} ${darkModeClass}`}
-            key={item.id}
-            style={width}
-          >
-            <Image
-              src={JSON.parse(item.images)[0]}
-              alt={item.name}
-              width={640}
-              height={480}
-              priority={index === 0}
-              placeholder="blur"
-              blurDataURL="/images/boiler-parts/placeholder.jpg"
-            />
-            <div className={styles.dashboard__slide__inner}>
-              <Link
-                href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
-                passHref
-                legacyBehavior
-              >
-                <a href="">
-                  <h3 className={styles.dashboard__slide__title}>
-                    {item.name}
-                  </h3>
-                </a>
-              </Link>
-              <span className={styles.dashboard__slide__code}>
-                Артикул: {item.vendor_code}
-              </span>
-              <span className={styles.dashboard__slide__price}>
-                {formatPrice(item.price)} P
-              </span>
+      ) : Array.isArray(items) && items.length ? (
+        items.map((item, index) => {
+          let imageUrl = '/images/boiler-parts/placeholder.jpg'
+
+          try {
+            const parsed = Array.isArray(item.images)
+              ? item.images
+              : JSON.parse(item.images || '[]')
+            if (parsed.length > 0) {
+              imageUrl = parsed[0]
+            }
+          } catch (e) {
+            console.warn('Ошибка парсинга images:', e)
+          }
+
+          return (
+            <div
+              className={`${styles.dashboard__slide} ${darkModeClass}`}
+              key={item.id}
+              style={width}
+            >
+              <Image
+                src={imageUrl}
+                alt={item.name}
+                width={640}
+                height={480}
+                priority={index === 0}
+                placeholder="blur"
+                blurDataURL="/images/boiler-parts/placeholder.jpg"
+              />
+              <div className={styles.dashboard__slide__inner}>
+                <Link
+                  href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
+                  passHref
+                  legacyBehavior
+                >
+                  <a>
+                    <h3 className={styles.dashboard__slide__title}>
+                      {item.name}
+                    </h3>
+                  </a>
+                </Link>
+                <span className={styles.dashboard__slide__code}>
+                  Артикул: {item.vendor_code}
+                </span>
+                <span className={styles.dashboard__slide__price}>
+                  {formatPrice(item.price)} P
+                </span>
+              </div>
             </div>
-          </div>
-        ))
+          )
+        })
       ) : (
-        <span>Список товаров пуст...</span>
+        <span style={{ padding: 16 }}>Список товаров пуст...</span>
       )}
     </Slider>
   )

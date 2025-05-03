@@ -30,14 +30,22 @@ const CatalogItem = ({
 
   const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 
+  const imageSrc = (() => {
+    try {
+      const parsed = JSON.parse(item.images)
+      return parsed?.[0] || '/img/catalog.png'
+    } catch {
+      return '/img/catalog.png'
+    }
+  })()
   return (
     <li className={`${styles.catalog__list__item} ${darkModeClass}`}>
       <div className={styles.catalog__list__item__image_wrapper}>
         <Image
-          src="/img/catalog.png"
+          src={imageSrc}
           alt={item.name}
-          width={300}
-          height={300}
+          width={640}
+          height={480}
           priority={!!isFirst}
           className={styles.catalog__list__item__image}
         />

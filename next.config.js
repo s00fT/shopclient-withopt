@@ -8,6 +8,9 @@ const nextConfig = {
   sassOptions: {
     fiber: false,
   },
+  images: {
+    domains: ['loremflickr.com'], // ✅ добавлено
+  },
 }
 
 module.exports = withBundleAnalyzer(nextConfig)

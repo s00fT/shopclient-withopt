@@ -5,6 +5,7 @@ import MarkerSvg from '@/components/elements/MarkerSvg/MarkerSvg'
 import PhoneSvg from '@/components/elements/PhoneSvg/PhoneSvg'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/footer/index.module.scss'
+import Image from 'next/image'
 import Link from 'next/link'
 import CompanyContent from './CompanyContent'
 import FooterLogo from './FooterLogo'
@@ -110,16 +111,16 @@ const Footer = () => {
               </h3>
               <ul className={styles.footer__bottom__block__pay}>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/pay.png" alt="apple-pay" />
+                  <Image src="/img/pay.png" alt="apple-pay" width={70} height={48} style={{ height: 'auto' }} />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/gpay.png" alt="google-pay" />
+                  <Image src="/img/gpay.png" alt="google-pay" width={70} height={48} style={{ height: 'auto' }} />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/master-card.png" alt="master-card" />
+                  <Image src="/img/master-card.png" alt="master-card" width={70} height={48} style={{ height: 'auto' }} />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/visa.png" alt="visa" />
+                  <Image src="/img/visa.png" alt="visa" width={70} height={48} style={{ height: 'auto' }} />
                 </li>
               </ul>
             </div>

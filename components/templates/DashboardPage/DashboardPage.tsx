@@ -9,7 +9,6 @@ import { IBoilerParts } from '@/types/boilerparts'
 import type { IDashboardSlider } from '@/types/dashboard'
 import { useStore } from 'effector-react'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -78,9 +77,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Head>
-        {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
-      </Head>
+    
 
       <section className={styles.dashboard}>
         <div className={`container ${styles.dashboard__container}`}>

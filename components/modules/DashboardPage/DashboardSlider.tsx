@@ -36,8 +36,8 @@ const DashboardSlider = ({
         list.style.marginRight = isMedia560
           ? '-8px'
           : isMedia800
-          ? '-15px'
-          : '0'
+            ? '-15px'
+            : '0'
       }
     })
   }, [isMedia560, isMedia800])

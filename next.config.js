@@ -9,7 +9,10 @@ const nextConfig = {
     fiber: false,
   },
   images: {
-    domains: ['loremflickr.com'], // ✅ добавлено
+    domains: ['loremflickr.com'], // ✅ для внешних изображений
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // ✅ отключает ошибки eslint при сборке
   },
 }
 

@@ -30,14 +30,15 @@ const DashboardSlider = ({
     const slider = document.querySelectorAll(`.${styles.dashboard__slider}`)
     slider.forEach((item) => {
       const list = item.querySelector('.slick-list') as HTMLElement
+
       if (list) {
         list.style.height = isMedia560 ? '276px' : '390px'
         list.style.padding = '0 5px'
         list.style.marginRight = isMedia560
           ? '-8px'
           : isMedia800
-            ? '-15px'
-            : '0'
+          ? '-15px'
+          : '0'
       }
     })
   }, [isMedia560, isMedia800])

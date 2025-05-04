@@ -12,11 +12,9 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
-const DashboardSlider = ({
-  items,
-  spinner,
-  goToPartPage,
-}: IDashboardSlider) => {
+const MAX_ITEMS = 10
+
+const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => {
   const isMedia768 = useMediaQuery(768)
   const isMedia1366 = useMediaQuery(1366)
   const isMedia800 = useMediaQuery(800)
@@ -28,9 +26,11 @@ const DashboardSlider = ({
     const slider = document.querySelectorAll(`.${styles.dashboard__slider}`)
     slider.forEach((item) => {
       const list = item.querySelector('.slick-list') as HTMLElement
-      list.style.height = isMedia560 ? '276px' : '390px'
-      list.style.padding = '0 5px'
-      list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
+      if (list) {
+        list.style.height = isMedia560 ? '276px' : '390px'
+        list.style.padding = '0 5px'
+        list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
+      }
     })
   }, [isMedia560, isMedia800])
 
@@ -51,11 +51,9 @@ const DashboardSlider = ({
   return (
     <Slider {...settings} className={styles.dashboard__slider}>
       {spinner ? (
-        [...Array(8)].map((_, i) => (
+        [...Array(6)].map((_, i) => (
           <div
-            className={`${skeletonStyles.skeleton__item} ${
-              mode === 'dark' ? `${skeletonStyles.dark_mode}` : ''
-            }`}
+            className={`${skeletonStyles.skeleton__item} ${mode === 'dark' ? skeletonStyles.dark_mode : ''}`}
             key={i}
             style={width}
           >
@@ -63,13 +61,11 @@ const DashboardSlider = ({
           </div>
         ))
       ) : Array.isArray(items) && items.length ? (
-        items.map((item, index) => {
-          let imageUrl = '/images/boiler-parts/placeholder.jpg'
+        items.slice(0, MAX_ITEMS).map((item, index) => {
+          let imageUrl = '/images/boiler-parts/placeholder.webp'
 
           try {
-            const parsed = Array.isArray(item.images)
-              ? item.images
-              : JSON.parse(item.images || '[]')
+            const parsed = Array.isArray(item.images) ? item.images : JSON.parse(item.images || '[]')
             if (parsed.length > 0) {
               imageUrl = parsed[0]
             }
@@ -78,38 +74,23 @@ const DashboardSlider = ({
           }
 
           return (
-            <div
-              className={`${styles.dashboard__slide} ${darkModeClass}`}
-              key={item.id}
-              style={width}
-            >
+            <div className={`${styles.dashboard__slide} ${darkModeClass}`} key={item.id} style={width}>
               <Image
                 src={imageUrl}
                 alt={item.name}
-                width={640}
-                height={480}
-                priority={index === 0}
+                sizes="(max-width: 768px) 100vw, 640px"
+                loading={index === 0 ? 'eager' : 'lazy'}
                 placeholder="blur"
-                blurDataURL="/images/boiler-parts/placeholder.jpg"
+                blurDataURL="/images/boiler-parts/placeholder.webp"
               />
               <div className={styles.dashboard__slide__inner}>
-                <Link
-                  href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
-                  passHref
-                  legacyBehavior
-                >
+                <Link href={goToPartPage ? `/catalog/${item.id}` : '/catalog'} legacyBehavior>
                   <a>
-                    <h3 className={styles.dashboard__slide__title}>
-                      {item.name}
-                    </h3>
+                    <h3 className={styles.dashboard__slide__title}>{item.name}</h3>
                   </a>
                 </Link>
-                <span className={styles.dashboard__slide__code}>
-                  Артикул: {item.vendor_code}
-                </span>
-                <span className={styles.dashboard__slide__price}>
-                  {formatPrice(item.price)} P
-                </span>
+                <span className={styles.dashboard__slide__code}>Артикул: {item.vendor_code}</span>
+                <span className={styles.dashboard__slide__price}>{formatPrice(item.price)} ₽</span>
               </div>
             </div>
           )

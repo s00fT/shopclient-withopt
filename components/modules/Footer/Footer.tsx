@@ -112,38 +112,38 @@ const Footer = () => {
               <ul className={styles.footer__bottom__block__pay}>
                 <li className={styles.footer__bottom__block__pay__item}>
                   <Image
-                    src="/img/pay.png"
+                    src="/img/pay.webp"
                     alt="apple-pay"
                     width={70}
                     height={48}
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
                   <Image
-                    src="/img/gpay.png"
+                    src="/img/gpay.webp"
                     alt="google-pay"
                     width={70}
                     height={48}
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
                   <Image
-                    src="/img/master-card.png"
+                    src="/img/master-card.webp"
                     alt="master-card"
                     width={70}
                     height={48}
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
                   <Image
-                    src="/img/visa.png"
+                    src="/img/visa.webp"
                     alt="visa"
                     width={70}
                     height={48}
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </li>
               </ul>

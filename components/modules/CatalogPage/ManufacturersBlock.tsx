@@ -1,8 +1,8 @@
-import { useStore } from 'effector-react'
 import { $mode } from '@/context/mode'
-import { AnimatePresence, motion } from 'framer-motion'
-import { IManufacturersBlockProps } from '@/types/catalog'
 import styles from '@/styles/catalog/index.module.scss'
+import { IManufacturersBlockProps } from '@/types/catalog'
+import { useStore } from 'effector-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import ManufacturersBlockItem from './ManufacturersBlockItem'
 
 const ManufacturersBlock = ({
@@ -11,8 +11,10 @@ const ManufacturersBlock = ({
   event,
 }: IManufacturersBlockProps) => {
   const mode = useStore($mode)
-  const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
+  const darkModeClass = mode === 'dark' ? styles.dark_mode : ''
   const checkedItems = manufacturersList.filter((item) => item.checked)
+
+  if (!checkedItems.length) return null
 
   return (
     <motion.div
@@ -21,13 +23,20 @@ const ManufacturersBlock = ({
       exit={{ opacity: 0 }}
       className={`${styles.manufacturers} ${darkModeClass}`}
     >
-      <h3 className={`${styles.manufacturers__title} ${darkModeClass}`}>
-        {title}
-      </h3>
+      <h3 className={styles.manufacturers__title}>{title}</h3>
+
       <ul className={styles.manufacturers__list}>
         <AnimatePresence>
           {checkedItems.map((item) => (
-            <ManufacturersBlockItem key={item.id} item={item} event={event} />
+            <motion.li
+              key={item.id}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ManufacturersBlockItem item={item} event={event} />
+            </motion.li>
           ))}
         </AnimatePresence>
       </ul>
@@ -36,3 +45,4 @@ const ManufacturersBlock = ({
 }
 
 export default ManufacturersBlock
+

@@ -37,13 +37,10 @@ const CatalogItem = dynamic(
   }
 )
 
-const FilterSelect = dynamic(
-  () => import('@/components/modules/CatalogPage/FilterSelect'),
-  {
-    ssr: false,
-    loading: () => <div>Загрузка сортировки...</div>,
-  }
-)
+const FilterSelect = dynamic(() => import('@/components/modules/CatalogPage/FilterSelect'), {
+  ssr: false,
+  loading: () => <div>Загрузка сортировки...</div>,
+})
 
 const ManufacturersBlock = dynamic(
   () => import('@/components/modules/CatalogPage/ManufacturersBlock'),

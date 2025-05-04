@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { removeFromCartFx } from '@/app/api/shopping-cart'
 import CartHoverCheckedSvg from '@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg'
 import CartHoverSvg from '@/components/elements/CartHoverSvg/CartHoverSvg'
@@ -30,23 +29,26 @@ const CatalogItem = ({
 
   const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 
-  const imageSrc = (() => {
-    try {
-      const parsed = JSON.parse(item.images)
-      return parsed?.[0] || '/img/catalog.png'
-    } catch {
-      return '/img/catalog.png'
+  let imageSrc = '/img/catalog.png'
+  try {
+    const parsed = typeof item.images === 'string' ? JSON.parse(item.images) : []
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      imageSrc = parsed[0]
     }
-  })()
+  } catch (e) {
+    console.warn('Ошибка парсинга изображения:', e)
+  }
+
   return (
     <li className={`${styles.catalog__list__item} ${darkModeClass}`}>
       <div className={styles.catalog__list__item__image_wrapper}>
         <Image
           src={imageSrc}
           alt={item.name}
-          width={640}
-          height={480}
+          sizes="(max-width: 768px) 100vw, 640px"
           priority={!!isFirst}
+          placeholder="blur"
+          blurDataURL="/images/boiler-parts/placeholder.webp"
           className={styles.catalog__list__item__image}
         />
       </div>
@@ -58,13 +60,11 @@ const CatalogItem = ({
           Артикул: {item.vendor_code}
         </span>
         <span className={styles.catalog__list__item__price}>
-          {formatPrice(item.price)} P
+          {formatPrice(item.price)} ₽
         </span>
       </div>
       <button
-        className={`${styles.catalog__list__item__cart} ${
-          isInCart ? styles.added : ''
-        }`}
+        className={`${styles.catalog__list__item__cart} ${isInCart ? styles.added : ''}`}
         disabled={spinner}
         onClick={toggleToCart}
       >

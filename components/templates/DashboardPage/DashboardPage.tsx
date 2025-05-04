@@ -20,9 +20,12 @@ const DashboardSlider = dynamic<IDashboardSlider>(
   }
 )
 
-const MotionWrapper = dynamic(() => import('@/components/elements/MotionWrapper'), {
-  ssr: false,
-})
+const MotionWrapper = dynamic(
+  () => import('@/components/elements/MotionWrapper'),
+  {
+    ssr: false,
+  }
+)
 
 const placeholderBlockStyle = {
   height: '300px',
@@ -36,7 +39,9 @@ const placeholderBlockStyle = {
 
 const DashboardPage = () => {
   const [newParts, setNewParts] = useState<IBoilerParts>({} as IBoilerParts)
-  const [bestsellers, setBestsellers] = useState<IBoilerParts>({} as IBoilerParts)
+  const [bestsellers, setBestsellers] = useState<IBoilerParts>(
+    {} as IBoilerParts
+  )
   const [spinner, setSpinner] = useState(false)
   const shoppingCart = useStore($shoppingCart)
   const [showAlert, setShowAlert] = useState(!!shoppingCart.length)
@@ -53,7 +58,9 @@ const DashboardPage = () => {
     try {
       setSpinner(true)
 
-      const bestsellers = await getBestsellersOrNewPartsFx('/boiler-parts/bestsellers')
+      const bestsellers = await getBestsellersOrNewPartsFx(
+        '/boiler-parts/bestsellers'
+      )
       const newParts = await getBestsellersOrNewPartsFx('/boiler-parts/new')
 
       setBestsellers(bestsellers)
@@ -82,7 +89,10 @@ const DashboardPage = () => {
           <MotionWrapper>
             <div className={`${styles.dashboard__alert} ${darkModeClass}`}>
               <CartAlert
-                count={shoppingCart.reduce((total, item) => total + item.count, 0)}
+                count={shoppingCart.reduce(
+                  (total, item) => total + item.count,
+                  0
+                )}
                 closeAlert={closeAlert}
               />
             </div>
@@ -93,7 +103,13 @@ const DashboardPage = () => {
           {!isSlowConnection ? (
             <BrandsSlider />
           ) : (
-            <div style={{ ...placeholderBlockStyle, height: '80px', fontSize: '14px' }}>
+            <div
+              style={{
+                ...placeholderBlockStyle,
+                height: '80px',
+                fontSize: '14px',
+              }}
+            >
               Слайдер брендов скрыт при медленном соединении
             </div>
           )}
@@ -111,7 +127,9 @@ const DashboardPage = () => {
             <DashboardSlider items={bestsellers.rows || []} spinner={spinner} />
           ) : (
             <div style={placeholderBlockStyle}>
-              <p style={{ margin: 0 }}>Слайдер скрыт при медленном соединении</p>
+              <p style={{ margin: 0 }}>
+                Слайдер скрыт при медленном соединении
+              </p>
             </div>
           )}
         </div>
@@ -124,7 +142,9 @@ const DashboardPage = () => {
             <DashboardSlider items={newParts.rows || []} spinner={spinner} />
           ) : (
             <div style={placeholderBlockStyle}>
-              <p style={{ margin: 0 }}>Слайдер скрыт при медленном соединении</p>
+              <p style={{ margin: 0 }}>
+                Слайдер скрыт при медленном соединении
+              </p>
             </div>
           )}
         </div>
@@ -136,11 +156,12 @@ const DashboardPage = () => {
             О компании
           </h3>
           <p className={`${styles.dashboard__about__text} ${darkModeClass}`}>
-            Инструкции и схемы помогут разобраться в эксплуатации, определить неисправность
-            и правильно выбрать запчасть для ремонта Вашего газового оборудования.
-            Купить запчасть, деталь для ремонта газового котла возможно в любом населенном
-            пункте Российской Федерации: Осуществляем доставку запчасти к газовым котлам
-            в следующие города: Москва, Сан...
+            Инструкции и схемы помогут разобраться в эксплуатации, определить
+            неисправность и правильно выбрать запчасть для ремонта Вашего
+            газового оборудования. Купить запчасть, деталь для ремонта газового
+            котла возможно в любом населенном пункте Российской Федерации:
+            Осуществляем доставку запчасти к газовым котлам в следующие города:
+            Москва, Сан...
           </p>
         </div>
       </div>

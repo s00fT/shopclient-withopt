@@ -45,4 +45,3 @@ const ManufacturersBlock = ({
 }
 
 export default ManufacturersBlock
-

@@ -31,7 +31,8 @@ const CatalogItem = ({
 
   let imageSrc = '/img/catalog.png'
   try {
-    const parsed = typeof item.images === 'string' ? JSON.parse(item.images) : []
+    const parsed =
+      typeof item.images === 'string' ? JSON.parse(item.images) : []
     if (Array.isArray(parsed) && parsed.length > 0) {
       imageSrc = parsed[0]
     }
@@ -64,7 +65,9 @@ const CatalogItem = ({
         </span>
       </div>
       <button
-        className={`${styles.catalog__list__item__cart} ${isInCart ? styles.added : ''}`}
+        className={`${styles.catalog__list__item__cart} ${
+          isInCart ? styles.added : ''
+        }`}
         disabled={spinner}
         onClick={toggleToCart}
       >

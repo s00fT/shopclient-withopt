@@ -31,7 +31,9 @@ const BrandsSlider = () => {
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
   useEffect(() => {
-    const slider = document.querySelector(`.${styles.dashboard__brands__slider}`)
+    const slider = document.querySelector(
+      `.${styles.dashboard__brands__slider}`
+    )
     const list = slider?.querySelector('.slick-list') as HTMLElement
 
     if (list) {

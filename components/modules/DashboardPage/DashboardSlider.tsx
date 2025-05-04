@@ -14,7 +14,11 @@ import 'slick-carousel/slick/slick.css'
 
 const MAX_ITEMS = 10
 
-const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => {
+const DashboardSlider = ({
+  items,
+  spinner,
+  goToPartPage,
+}: IDashboardSlider) => {
   const isMedia768 = useMediaQuery(768)
   const isMedia1366 = useMediaQuery(1366)
   const isMedia800 = useMediaQuery(800)
@@ -29,7 +33,11 @@ const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => 
       if (list) {
         list.style.height = isMedia560 ? '276px' : '390px'
         list.style.padding = '0 5px'
-        list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
+        list.style.marginRight = isMedia560
+          ? '-8px'
+          : isMedia800
+          ? '-15px'
+          : '0'
       }
     })
   }, [isMedia560, isMedia800])
@@ -53,7 +61,9 @@ const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => 
       {spinner ? (
         [...Array(6)].map((_, i) => (
           <div
-            className={`${skeletonStyles.skeleton__item} ${mode === 'dark' ? skeletonStyles.dark_mode : ''}`}
+            className={`${skeletonStyles.skeleton__item} ${
+              mode === 'dark' ? skeletonStyles.dark_mode : ''
+            }`}
             key={i}
             style={width}
           >
@@ -65,7 +75,9 @@ const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => 
           let imageUrl = '/images/boiler-parts/placeholder.webp'
 
           try {
-            const parsed = Array.isArray(item.images) ? item.images : JSON.parse(item.images || '[]')
+            const parsed = Array.isArray(item.images)
+              ? item.images
+              : JSON.parse(item.images || '[]')
             if (parsed.length > 0) {
               imageUrl = parsed[0]
             }
@@ -74,7 +86,11 @@ const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => 
           }
 
           return (
-            <div className={`${styles.dashboard__slide} ${darkModeClass}`} key={item.id} style={width}>
+            <div
+              className={`${styles.dashboard__slide} ${darkModeClass}`}
+              key={item.id}
+              style={width}
+            >
               <Image
                 src={imageUrl}
                 alt={item.name}
@@ -84,13 +100,22 @@ const DashboardSlider = ({ items, spinner, goToPartPage }: IDashboardSlider) => 
                 blurDataURL="/images/boiler-parts/placeholder.webp"
               />
               <div className={styles.dashboard__slide__inner}>
-                <Link href={goToPartPage ? `/catalog/${item.id}` : '/catalog'} legacyBehavior>
+                <Link
+                  href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
+                  legacyBehavior
+                >
                   <a>
-                    <h3 className={styles.dashboard__slide__title}>{item.name}</h3>
+                    <h3 className={styles.dashboard__slide__title}>
+                      {item.name}
+                    </h3>
                   </a>
                 </Link>
-                <span className={styles.dashboard__slide__code}>Артикул: {item.vendor_code}</span>
-                <span className={styles.dashboard__slide__price}>{formatPrice(item.price)} ₽</span>
+                <span className={styles.dashboard__slide__code}>
+                  Артикул: {item.vendor_code}
+                </span>
+                <span className={styles.dashboard__slide__price}>
+                  {formatPrice(item.price)} ₽
+                </span>
               </div>
             </div>
           )

@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import CartItemCounter from '@/components/elements/CartItemCounter/CartItemCounter'
+import { $mode } from '@/context/mode'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { usePrice } from '@/hooks/usePrice'
+import styles from '@/styles/order/index.module.scss'
+import spinnerStyles from '@/styles/spinner/index.module.scss'
+import { IShoppingCartItem } from '@/types/shopping-cart'
+import { formatPrice } from '@/utils/common'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
-import { IShoppingCartItem } from '@/types/shopping-cart'
-import { usePrice } from '@/hooks/usePrice'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { $mode } from '@/context/mode'
-import CartItemCounter from '@/components/elements/CartItemCounter/CartItemCounter'
-import { formatPrice } from '@/utils/common'
-import spinnerStyles from '@/styles/spinner/index.module.scss'
-import styles from '@/styles/order/index.module.scss'
 
 const OrderItem = ({ item }: { item: IShoppingCartItem }) => {
   const mode = useStore($mode)
@@ -26,7 +26,7 @@ const OrderItem = ({ item }: { item: IShoppingCartItem }) => {
           <div className={styles.order__cart__list__item__img}>
             <img src={item.image} alt={item.name} />
           </div>
-          <Link href={`/catalog/${item.partId}`} passHref legacyBehavior>
+          <Link href={`/catalog/${item.id}`} passHref legacyBehavior>
             <a
               className={`${styles.order__cart__list__item__text} ${darkModeClass}`}
             >

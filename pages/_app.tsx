@@ -27,9 +27,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextNProgress />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
       <ToastContainer
         position="bottom-right"
         hideProgressBar={false}
@@ -41,5 +39,6 @@ function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
+
 
 export default enhance(App as React.FC<AppProps>)

@@ -29,10 +29,9 @@ const CatalogItem = ({
 
   const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 
-  let imageSrc = '/img/catalog.png'
+  let imageSrc = '/images/boiler-parts/placeholder.webp'
   try {
-    const parsed =
-      typeof item.images === 'string' ? JSON.parse(item.images) : []
+    const parsed = typeof item.images === 'string' ? JSON.parse(item.images) : []
     if (Array.isArray(parsed) && parsed.length > 0) {
       imageSrc = parsed[0]
     }
@@ -43,15 +42,25 @@ const CatalogItem = ({
   return (
     <li className={`${styles.catalog__list__item} ${darkModeClass}`}>
       <div className={styles.catalog__list__item__image_wrapper}>
-        <Image
-          src={imageSrc}
-          alt={item.name}
-          sizes="(max-width: 768px) 100vw, 640px"
-          priority={!!isFirst}
-          placeholder="blur"
-          blurDataURL="/images/boiler-parts/placeholder.webp"
-          className={styles.catalog__list__item__image}
-        />
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '220px',
+          }}
+        >
+          <Image
+            src={imageSrc}
+            alt={item.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 640px"
+            style={{ objectFit: 'contain' }}
+            priority={!!isFirst}
+            placeholder="blur"
+            blurDataURL="/images/boiler-parts/placeholder.webp"
+            className={styles.catalog__list__item__image}
+          />
+        </div>
       </div>
       <div className={styles.catalog__list__item__inner}>
         <Link href={`/catalog/${item.id}`} passHref legacyBehavior>
@@ -65,9 +74,7 @@ const CatalogItem = ({
         </span>
       </div>
       <button
-        className={`${styles.catalog__list__item__cart} ${
-          isInCart ? styles.added : ''
-        }`}
+        className={`${styles.catalog__list__item__cart} ${isInCart ? styles.added : ''}`}
         disabled={spinner}
         onClick={toggleToCart}
       >

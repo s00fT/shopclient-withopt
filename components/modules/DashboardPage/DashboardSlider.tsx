@@ -30,7 +30,6 @@ const DashboardSlider = ({
     const slider = document.querySelectorAll(`.${styles.dashboard__slider}`)
     slider.forEach((item) => {
       const list = item.querySelector('.slick-list') as HTMLElement
-
       if (list) {
         list.style.height = isMedia560 ? '276px' : '390px'
         list.style.padding = '0 5px'
@@ -92,14 +91,24 @@ const DashboardSlider = ({
               key={item.id}
               style={width}
             >
-              <Image
-                src={imageUrl}
-                alt={item.name}
-                sizes="(max-width: 768px) 100vw, 640px"
-                loading={index === 0 ? 'eager' : 'lazy'}
-                placeholder="blur"
-                blurDataURL="/images/boiler-parts/placeholder.webp"
-              />
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: isMedia560 ? 160 : 220,
+                }}
+              >
+                <Image
+                  src={imageUrl}
+                  alt={item.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  style={{ objectFit: 'contain' }}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  placeholder="blur"
+                  blurDataURL="/images/boiler-parts/placeholder.webp"
+                />
+              </div>
               <div className={styles.dashboard__slide__inner}>
                 <Link
                   href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
